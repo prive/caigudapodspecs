@@ -35,15 +35,15 @@ Pod::Spec.new do |s|
     core.vendored_libraries = 'Vendor/libidn/libidn.a'
     core.libraries = 'xml2','resolv'
     core.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2 $(SDKROOT)/usr/include/libresolv',
-                      'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/XMPPFramework/Vendor/libidn"'}
+                      'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/PriveXMPPFramework/Vendor/libidn"'}
 
-    core.dependency 'XMPPFramework/Authentication'
-    core.dependency 'XMPPFramework/Categories'
-    core.dependency 'XMPPFramework/Utilities'
+    core.dependency 'PriveXMPPFramework/Authentication'
+    core.dependency 'PriveXMPPFramework/Categories'
+    core.dependency 'PriveXMPPFramework/Utilities'
 
     # Can't use the KissXML pod because enabling the NSXML defines requires
     # modifying a header
-    core.ios.dependency 'XMPPFramework/KissXML'
+    core.ios.dependency 'PriveXMPPFramework/KissXML'
 
     core.dependency 'CocoaLumberjack','~>1.6.2'
     core.dependency 'CocoaAsyncSocket','~>7.3.1'
@@ -51,28 +51,28 @@ Pod::Spec.new do |s|
 
   s.subspec 'Authentication' do |ss|
    ss.source_files =  'Authentication/**/*.{h,m}'
-   ss.dependency 'XMPPFramework/Core'
+   ss.dependency 'PriveXMPPFramework/Core'
   end
 
   s.subspec 'Categories' do |ss|
    ss.source_files =  'Categories/**/*.{h,m}'
-   ss.dependency 'XMPPFramework/Core'
+   ss.dependency 'PriveXMPPFramework/Core'
   end
 
   s.subspec 'Utilities' do |ss|
    ss.source_files =  'Utilities/**/*.{h,m}'
-   ss.dependency 'XMPPFramework/Core'
+   ss.dependency 'PriveXMPPFramework/Core'
   end
 
   s.subspec 'KissXML' do |ss|
    ss.source_files = 'Vendor/KissXML/**/*.{h,m}'
-   ss.dependency 'XMPPFramework/Core'
+   ss.dependency 'PriveXMPPFramework/Core'
   end
 
   def s.xmpp_extension(name)
     subspec name do |ss|
       ss.source_files = "Extensions/#{name}/**/*.{h,m}"
-      ss.dependency 'XMPPFramework/Core'
+      ss.dependency 'PriveXMPPFramework/Core'
       ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
       yield ss if block_given?
     end
@@ -88,20 +88,20 @@ Pod::Spec.new do |s|
     r.framework = 'SystemConfiguration'
   end
   s.xmpp_extension 'Roster' do |r|
-    r.dependency 'XMPPFramework/CoreDataStorage'
-    r.dependency 'XMPPFramework/XEP-0203'
+    r.dependency 'PriveXMPPFramework/CoreDataStorage'
+    r.dependency 'PriveXMPPFramework/XEP-0203'
   end
   s.xmpp_extension 'SystemInputActivityMonitor'
   s.xmpp_extension 'XEP-0009'
   s.xmpp_extension 'XEP-0012'
   s.xmpp_extension 'XEP-0016'
   s.xmpp_extension 'XEP-0045' do |x|
-    x.dependency 'XMPPFramework/CoreDataStorage'
-    x.dependency 'XMPPFramework/XEP-0203'
+    x.dependency 'PriveXMPPFramework/CoreDataStorage'
+    x.dependency 'PriveXMPPFramework/XEP-0203'
   end
   s.xmpp_extension 'XEP-0054' do |x|
-    x.dependency 'XMPPFramework/Roster'
-    x.dependency 'XMPPFramework/XEP-0153'
+    x.dependency 'PriveXMPPFramework/Roster'
+    x.dependency 'PriveXMPPFramework/XEP-0153'
     x.framework = 'CoreLocation'
   end
   s.xmpp_extension 'XEP-0059'
@@ -113,24 +113,24 @@ Pod::Spec.new do |s|
   s.xmpp_extension 'XEP-0100'
   s.xmpp_extension 'XEP-0106'
   s.xmpp_extension 'XEP-0115' do |x|
-    x.dependency 'XMPPFramework/CoreDataStorage'
+    x.dependency 'PriveXMPPFramework/CoreDataStorage'
   end
   s.xmpp_extension 'XEP-0136' do |x|
-    x.dependency 'XMPPFramework/CoreDataStorage'
-    x.dependency 'XMPPFramework/XEP-0203'
-    x.dependency 'XMPPFramework/XEP-0085'
+    x.dependency 'PriveXMPPFramework/CoreDataStorage'
+    x.dependency 'PriveXMPPFramework/XEP-0203'
+    x.dependency 'PriveXMPPFramework/XEP-0085'
   end
   s.xmpp_extension 'XEP-0153' do |x|
-    x.dependency 'XMPPFramework/XEP-0054'
+    x.dependency 'PriveXMPPFramework/XEP-0054'
   end
   s.xmpp_extension 'XEP-0172'
   s.xmpp_extension 'XEP-0184'
   s.xmpp_extension 'XEP-0199'
   s.xmpp_extension 'XEP-0202' do |x|
-    x.dependency 'XMPPFramework/XEP-0082'
+    x.dependency 'PriveXMPPFramework/XEP-0082'
   end
   s.xmpp_extension 'XEP-0203' do |x|
-    x.dependency 'XMPPFramework/XEP-0082'
+    x.dependency 'PriveXMPPFramework/XEP-0082'
   end
   s.xmpp_extension 'XEP-0223'
   s.xmpp_extension 'XEP-0224'
